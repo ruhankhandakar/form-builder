@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { FormBuilder } from '@/components/FormBuilder';
 import { FormRenderer } from '@/components/FormRenderer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Navbar } from '@/components/Navbar';
 import { getForm } from '@/lib/store';
 import { Form } from '@/lib/types';
 
@@ -30,28 +31,31 @@ const App = () => {
   return (
     <TooltipProvider>
       <Sonner visibleToasts={1} richColors />
-      <main className="container mx-auto p-4">
-        <Tabs value={activeTab} onValueChange={handleTabChange}>
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="builder">Form Builder</TabsTrigger>
-            <TabsTrigger value="preview">Form Preview</TabsTrigger>
-          </TabsList>
-          <TabsContent value="builder">
-            <FormBuilder />
-          </TabsContent>
-          <TabsContent value="preview">
-            {form && (
-              <FormRenderer
-                form={form}
-                onSubmit={() => {
-                  console.log('Form submitted');
-                  setActiveTab('builder');
-                }}
-              />
-            )}
-          </TabsContent>
-        </Tabs>
-      </main>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="container mx-auto p-4 flex-1">
+          <Tabs value={activeTab} onValueChange={handleTabChange}>
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="builder">Form Builder</TabsTrigger>
+              <TabsTrigger value="preview">Form Preview</TabsTrigger>
+            </TabsList>
+            <TabsContent value="builder">
+              <FormBuilder />
+            </TabsContent>
+            <TabsContent value="preview">
+              {form && (
+                <FormRenderer
+                  form={form}
+                  onSubmit={() => {
+                    console.log('Form submitted');
+                    setActiveTab('builder');
+                  }}
+                />
+              )}
+            </TabsContent>
+          </Tabs>
+        </main>
+      </div>
     </TooltipProvider>
   );
 };
