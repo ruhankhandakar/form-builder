@@ -17,7 +17,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           <a href="/" className="flex items-center space-x-2">
             <img
               src="https://cdn.prod.website-files.com/6796783f35faa4c61a224a54/67968a44a6dd4f0210e7f803_horizontal.png"
-              alt="Company Logo"
+              alt="Firstwork"
               className="h-8 w-auto"
             />
           </a>

@@ -3,7 +3,6 @@ import { debounce } from 'lodash';
 import { ChevronUp, ChevronDown, Trash2, Loader2, Plus, X } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { Question, QuestionType } from '@/lib/types';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import {
@@ -15,8 +14,10 @@ import {
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { deleteQuestion, saveQuestion } from '@/lib/store';
 import { Button } from '@/components/ui/button';
+
+import { deleteQuestion, saveQuestion } from '@/lib/store';
+import { Question, QuestionType } from '@/lib/types';
 
 interface QuestionCardProps {
   question: Question;
