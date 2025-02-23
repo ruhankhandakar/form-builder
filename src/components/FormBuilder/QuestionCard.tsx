@@ -120,14 +120,18 @@ export const QuestionCard = ({
   return (
     <Card className="p-4 mb-4 transition-all duration-300 hover:shadow-lg">
       <div className="flex justify-between items-center mb-1">
-        <Button
-          variant="ghost"
-          size="sm"
+        <div
+          className="flex items-center gap-2 cursor-pointer"
           onClick={() => setExpanded(!expanded)}
-          className="p-2"
         >
-          {expanded ? <ChevronUp /> : <ChevronDown />}
-        </Button>
+          <Button variant="ghost" size="sm" className="p-2">
+            {expanded ? <ChevronUp /> : <ChevronDown />}
+          </Button>
+          <p>
+            <strong>{localQuestion.title}</strong>
+            {localQuestion.required && <span className="text-red-500">*</span>}
+          </p>
+        </div>
 
         <div className="flex items-center gap-2">
           {isLoading && (
