@@ -1,20 +1,25 @@
 import '@testing-library/jest-dom';
 
 declare global {
-  var indexedDB: {
-    open: jest.Mock;
-  };
+  interface Window {
+    indexedDB: IDBFactory;
+  }
 }
 
-const mockIndexedDB = {
-  open: jest.fn(),
+const mockIndexedDB: Partial<IDBFactory> = {
+  open: jest
+    .fn()
+    .mockImplementation(() => ({} as IDBOpenDBRequest)) as jest.Mock<
+    IDBOpenDBRequest,
+    [name: string, version?: number]
+  >,
 };
 
 (global as any).indexedDB = mockIndexedDB;
 
 // Clear mocks between tests
 beforeEach(() => {
-  mockIndexedDB.open.mockClear();
+  (mockIndexedDB.open as jest.Mock).mockClear();
 });
 
 export {};
